@@ -1,0 +1,175 @@
+Triage API Security Report
+==========================
+
+Модель: qwen2.5-coder:3b
+Время: 2026-04-27T17:11:39.756375
+JWT получен: Да
+
+Всего тестов: 0
+Найдено уязвимостей: 32
+
+=== УЯЗВИМОСТИ ===
+
+[POST] /triage-api/auth/who-i-am
+  Тип: SQL Injection
+  Payload: ' OR '1'='1
+  Статус: 200
+
+[POST] /triage-api/auth/who-i-am
+  Тип: Cross-Site Scripting (XSS)
+  Payload: <script>alert('XSS')</script>
+  Статус: 200
+
+[POST] /triage-api/auth/who-i-am
+  Тип: Buffer Overflow
+  Payload: %0D%0A
+  Статус: 200
+
+[POST] /triage-api/auth/who-i-am
+  Тип: File Inclusion
+  Payload: ../etc/passwd
+  Статус: 200
+
+[POST] /triage-api/auth/who-i-am
+  Тип: SQL Injection with Union Select
+  Payload: ' UNION SELECT NULL, NULL, CONCAT(user(),':',pass()) FROM users-- 
+  Статус: 200
+
+[POST] /triage-api/auth/who-i-am
+  Тип: Command Injection
+  Payload: 1; ls -la;
+  Статус: 200
+
+[POST] /triage-api/auth/who-i-am
+  Тип: File Upload
+  Payload: %0d%0aContent-Disposition: form-data; name="file"; filename="shell.php"
+
+  Статус: 200
+
+[POST] /triage-api/auth/who-i-am
+  Тип: CSRF Token Manipulation
+  Payload: csrf_token=<b>attacker_csrf_token</b>
+  Статус: 200
+
+[POST] /triage-api/emergency-situations
+  Тип: SQL Injection
+  Payload: ' OR '1'='1
+  Статус: 200
+
+[POST] /triage-api/emergency-situations
+  Тип: Cross-Site Scripting (XSS)
+  Payload: <script>alert('XSS')</script>
+  Статус: 200
+
+[POST] /triage-api/emergency-situations
+  Тип: Buffer Overflow
+  Payload: %0D%0A
+  Статус: 200
+
+[POST] /triage-api/emergency-situations
+  Тип: File Inclusion
+  Payload: ../etc/passwd
+  Статус: 200
+
+[POST] /triage-api/emergency-situations
+  Тип: SQL Injection with Union Select
+  Payload: ' UNION SELECT NULL, NULL, CONCAT(user(),':',pass()) FROM users-- 
+  Статус: 200
+
+[POST] /triage-api/emergency-situations
+  Тип: Command Injection
+  Payload: 1; ls -la;
+  Статус: 200
+
+[POST] /triage-api/emergency-situations
+  Тип: File Upload
+  Payload: %0d%0aContent-Disposition: form-data; name="file"; filename="shell.php"
+
+  Статус: 200
+
+[POST] /triage-api/emergency-situations
+  Тип: CSRF Token Manipulation
+  Payload: csrf_token=<b>attacker_csrf_token</b>
+  Статус: 200
+
+[GET] /triage-api/handbooks/descriptors
+  Тип: SQL Injection
+  Payload: ' OR '1'='1
+  Статус: 200
+
+[GET] /triage-api/handbooks/descriptors
+  Тип: Cross-Site Scripting (XSS)
+  Payload: <script>alert('XSS')</script>
+  Статус: 200
+
+[GET] /triage-api/handbooks/descriptors
+  Тип: Buffer Overflow
+  Payload: %0D%0A
+  Статус: 200
+
+[GET] /triage-api/handbooks/descriptors
+  Тип: File Inclusion
+  Payload: ../etc/passwd
+  Статус: 200
+
+[GET] /triage-api/handbooks/descriptors
+  Тип: SQL Injection with Union Select
+  Payload: ' UNION SELECT NULL, NULL, CONCAT(user(),':',pass()) FROM users-- 
+  Статус: 200
+
+[GET] /triage-api/handbooks/descriptors
+  Тип: Command Injection
+  Payload: 1; ls -la;
+  Статус: 200
+
+[GET] /triage-api/handbooks/descriptors
+  Тип: File Upload
+  Payload: %0d%0aContent-Disposition: form-data; name="file"; filename="shell.php"
+
+  Статус: 200
+
+[GET] /triage-api/handbooks/descriptors
+  Тип: CSRF Token Manipulation
+  Payload: csrf_token=<b>attacker_csrf_token</b>
+  Статус: 200
+
+[GET] /triage-api/handbooks
+  Тип: SQL Injection
+  Payload: ' OR '1'='1
+  Статус: 500
+
+[GET] /triage-api/handbooks
+  Тип: Cross-Site Scripting (XSS)
+  Payload: <script>alert('XSS')</script>
+  Статус: 500
+
+[GET] /triage-api/handbooks
+  Тип: Buffer Overflow
+  Payload: %0D%0A
+  Статус: 500
+
+[GET] /triage-api/handbooks
+  Тип: File Inclusion
+  Payload: ../etc/passwd
+  Статус: 500
+
+[GET] /triage-api/handbooks
+  Тип: SQL Injection with Union Select
+  Payload: ' UNION SELECT NULL, NULL, CONCAT(user(),':',pass()) FROM users-- 
+  Статус: 500
+
+[GET] /triage-api/handbooks
+  Тип: Command Injection
+  Payload: 1; ls -la;
+  Статус: 500
+
+[GET] /triage-api/handbooks
+  Тип: File Upload
+  Payload: %0d%0aContent-Disposition: form-data; name="file"; filename="shell.php"
+
+  Статус: 500
+
+[GET] /triage-api/handbooks
+  Тип: CSRF Token Manipulation
+  Payload: csrf_token=<b>attacker_csrf_token</b>
+  Статус: 500

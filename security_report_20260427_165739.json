@@ -1,0 +1,573 @@
+{
+  "timestamp": "2026-04-27T16:54:55.591368",
+  "target": "http://localhost:5188",
+  "model": "qwen2.5-coder:3b",
+  "jwt_obtained": true,
+  "total_tests": 0,
+  "vulnerabilities": [
+    {
+      "endpoint": "/triage-api/auth/login",
+      "method": "POST",
+      "attack_type": "sql",
+      "test_value": "' OR '1'='1'",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/auth/login",
+      "method": "POST",
+      "attack_type": "xss",
+      "test_value": "<script>alert('XSS');</script>",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/auth/login",
+      "method": "POST",
+      "attack_type": "path_traversal",
+      "test_value": "/..;/etc/passwd",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/auth/login",
+      "method": "POST",
+      "attack_type": "os_command_injection",
+      "test_value": "; ls -al;",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/auth/login",
+      "method": "POST",
+      "attack_type": "csrf",
+      "test_value": "<form action='http://example.com/login' method='POST'><input type='hidden' name='_token' value='your_token_here'><button type='submit'>Submit</button></form>",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/auth/login",
+      "method": "POST",
+      "attack_type": "injection",
+      "test_value": "' UNION SELECT * FROM users -- ",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/auth/login",
+      "method": "POST",
+      "attack_type": "file_upload",
+      "test_value": ";/bin/bash -c 'echo \"Content-Disposition: form-data; name=uploaded_file\" > file.txt && echo \"\"' --data-binary @/etc/passwd",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/auth/login",
+      "method": "POST",
+      "attack_type": "buffer_overflow",
+      "test_value": "%0a%2f%62%79%5f%73%65%6c%66%79%2e%6d%64%2f%73%65%6c%61%72%79%20%3c%2a%3e%20%74%68%65%2075%6e%69%63%6b%65%72%73%2075%72%6e%61%6e%64",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "sql",
+      "test_value": "' OR '1'='1'",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "xss",
+      "test_value": "<script>alert('XSS');</script>",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "path_traversal",
+      "test_value": "/..;/etc/passwd",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "os_command_injection",
+      "test_value": "; ls -al;",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "csrf",
+      "test_value": "<form action='http://example.com/login' method='POST'><input type='hidden' name='_token' value='your_token_here'><button type='submit'>Submit</button></form>",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "injection",
+      "test_value": "' UNION SELECT * FROM users -- ",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "file_upload",
+      "test_value": ";/bin/bash -c 'echo \"Content-Disposition: form-data; name=uploaded_file\" > file.txt && echo \"\"' --data-binary @/etc/passwd",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "buffer_overflow",
+      "test_value": "%0a%2f%62%79%5f%73%65%6c%66%79%2e%6d%64%2f%73%65%6c%61%72%79%20%3c%2a%3e%20%74%68%65%2075%6e%69%63%6b%65%72%73%2075%72%6e%61%6e%64",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "sql",
+      "test_value": "' OR '1'='1'",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"eaeda169-371c-465c-89ec-c9f0a9cd6988\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-27T11:55"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "xss",
+      "test_value": "<script>alert('XSS');</script>",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"0f6a8a81-3e97-41e7-b5bd-e160a527b532\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-27T11:55"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "path_traversal",
+      "test_value": "/..;/etc/passwd",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"20f2bf5b-80a0-48cd-ace0-500837f9184d\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-27T11:55"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "os_command_injection",
+      "test_value": "; ls -al;",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"f06b87fe-0c88-4cd7-993d-d5a115a758e5\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-27T11:55"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "csrf",
+      "test_value": "<form action='http://example.com/login' method='POST'><input type='hidden' name='_token' value='your_token_here'><button type='submit'>Submit</button></form>",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"114876fd-b67a-4087-b3c7-27220c6fa3fa\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-27T11:55"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "injection",
+      "test_value": "' UNION SELECT * FROM users -- ",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"3c9afdb0-5616-44d9-998e-555daa7bd214\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-27T11:55"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "file_upload",
+      "test_value": ";/bin/bash -c 'echo \"Content-Disposition: form-data; name=uploaded_file\" > file.txt && echo \"\"' --data-binary @/etc/passwd",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"106ad07f-2342-4428-91b4-6e0f7e3627e6\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-27T11:55"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "buffer_overflow",
+      "test_value": "%0a%2f%62%79%5f%73%65%6c%66%79%2e%6d%64%2f%73%65%6c%61%72%79%20%3c%2a%3e%20%74%68%65%2075%6e%69%63%6b%65%72%73%2075%72%6e%61%6e%64",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"daa885f7-5843-4511-b7a7-fc5afcbfcca7\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-27T11:55"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/page",
+      "method": "GET",
+      "attack_type": "sql",
+      "test_value": "' OR '1'='1'",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"toSkip\":[\"The value '' OR '1'='1'' is not valid.\"],\"toTake\":[\"The"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/page",
+      "method": "GET",
+      "attack_type": "xss",
+      "test_value": "<script>alert('XSS');</script>",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"toSkip\":[\"The value '<script>alert('XSS');</script>' is not valid"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/page",
+      "method": "GET",
+      "attack_type": "path_traversal",
+      "test_value": "/..;/etc/passwd",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"toSkip\":[\"The value '/..;/etc/passwd' is not valid.\"],\"toTake\":[\""
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/page",
+      "method": "GET",
+      "attack_type": "os_command_injection",
+      "test_value": "; ls -al;",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"toSkip\":[\"The value '; ls -al;' is not valid.\"],\"toTake\":[\"The va"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/page",
+      "method": "GET",
+      "attack_type": "csrf",
+      "test_value": "<form action='http://example.com/login' method='POST'><input type='hidden' name='_token' value='your_token_here'><button type='submit'>Submit</button></form>",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"toSkip\":[\"The value '<form action='http://example.com/login' meth"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/page",
+      "method": "GET",
+      "attack_type": "injection",
+      "test_value": "' UNION SELECT * FROM users -- ",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"toSkip\":[\"The value '' UNION SELECT * FROM users -- ' is not vali"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/page",
+      "method": "GET",
+      "attack_type": "file_upload",
+      "test_value": ";/bin/bash -c 'echo \"Content-Disposition: form-data; name=uploaded_file\" > file.txt && echo \"\"' --data-binary @/etc/passwd",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"toSkip\":[\"The value ';/bin/bash -c 'echo \\\"Content-Disposition: f"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/page",
+      "method": "GET",
+      "attack_type": "buffer_overflow",
+      "test_value": "%0a%2f%62%79%5f%73%65%6c%66%79%2e%6d%64%2f%73%65%6c%61%72%79%20%3c%2a%3e%20%74%68%65%2075%6e%69%63%6b%65%72%73%2075%72%6e%61%6e%64",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"toSkip\":[\"The value '%0a%2f%62%79%5f%73%65%6c%66%79%2e%6d%64%2f%7"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/opened",
+      "method": "GET",
+      "attack_type": "sql",
+      "test_value": "' OR '1'='1'",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"lastUpdateTime\":[\"The value '' OR '1'='1'' is not valid.\"]},\"trac"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/opened",
+      "method": "GET",
+      "attack_type": "xss",
+      "test_value": "<script>alert('XSS');</script>",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"lastUpdateTime\":[\"The value '<script>alert('XSS');</script>' is n"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/opened",
+      "method": "GET",
+      "attack_type": "path_traversal",
+      "test_value": "/..;/etc/passwd",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"lastUpdateTime\":[\"The value '/..;/etc/passwd' is not valid.\"]},\"t"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/opened",
+      "method": "GET",
+      "attack_type": "os_command_injection",
+      "test_value": "; ls -al;",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"lastUpdateTime\":[\"The value '; ls -al;' is not valid.\"]},\"traceId"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/opened",
+      "method": "GET",
+      "attack_type": "csrf",
+      "test_value": "<form action='http://example.com/login' method='POST'><input type='hidden' name='_token' value='your_token_here'><button type='submit'>Submit</button></form>",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"lastUpdateTime\":[\"The value '<form action='http://example.com/log"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/opened",
+      "method": "GET",
+      "attack_type": "injection",
+      "test_value": "' UNION SELECT * FROM users -- ",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"lastUpdateTime\":[\"The value '' UNION SELECT * FROM users -- ' is "
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/opened",
+      "method": "GET",
+      "attack_type": "file_upload",
+      "test_value": ";/bin/bash -c 'echo \"Content-Disposition: form-data; name=uploaded_file\" > file.txt && echo \"\"' --data-binary @/etc/passwd",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"lastUpdateTime\":[\"The value ';/bin/bash -c 'echo \\\"Content-Dispos"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/opened",
+      "method": "GET",
+      "attack_type": "buffer_overflow",
+      "test_value": "%0a%2f%62%79%5f%73%65%6c%66%79%2e%6d%64%2f%73%65%6c%61%72%79%20%3c%2a%3e%20%74%68%65%2075%6e%69%63%6b%65%72%73%2075%72%6e%61%6e%64",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"lastUpdateTime\":[\"The value '%0a%2f%62%79%5f%73%65%6c%66%79%2e%6d"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/victims",
+      "method": "POST",
+      "attack_type": "sql",
+      "test_value": "' OR '1'='1'",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/victims",
+      "method": "POST",
+      "attack_type": "xss",
+      "test_value": "<script>alert('XSS');</script>",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/victims",
+      "method": "POST",
+      "attack_type": "path_traversal",
+      "test_value": "/..;/etc/passwd",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/victims",
+      "method": "POST",
+      "attack_type": "os_command_injection",
+      "test_value": "; ls -al;",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/victims",
+      "method": "POST",
+      "attack_type": "csrf",
+      "test_value": "<form action='http://example.com/login' method='POST'><input type='hidden' name='_token' value='your_token_here'><button type='submit'>Submit</button></form>",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/victims",
+      "method": "POST",
+      "attack_type": "injection",
+      "test_value": "' UNION SELECT * FROM users -- ",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/victims",
+      "method": "POST",
+      "attack_type": "file_upload",
+      "test_value": ";/bin/bash -c 'echo \"Content-Disposition: form-data; name=uploaded_file\" > file.txt && echo \"\"' --data-binary @/etc/passwd",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/victims",
+      "method": "POST",
+      "attack_type": "buffer_overflow",
+      "test_value": "%0a%2f%62%79%5f%73%65%6c%66%79%2e%6d%64%2f%73%65%6c%61%72%79%20%3c%2a%3e%20%74%68%65%2075%6e%69%63%6b%65%72%73%2075%72%6e%61%6e%64",
+      "response_status": 400,
+      "response_preview": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"$\":[\"JSON deserialization for type 'TriageApi.App.Contracts.Dtos."
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "sql",
+      "test_value": "' OR '1'='1'",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "xss",
+      "test_value": "<script>alert('XSS');</script>",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "path_traversal",
+      "test_value": "/..;/etc/passwd",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "os_command_injection",
+      "test_value": "; ls -al;",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "csrf",
+      "test_value": "<form action='http://example.com/login' method='POST'><input type='hidden' name='_token' value='your_token_here'><button type='submit'>Submit</button></form>",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "injection",
+      "test_value": "' UNION SELECT * FROM users -- ",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "file_upload",
+      "test_value": ";/bin/bash -c 'echo \"Content-Disposition: form-data; name=uploaded_file\" > file.txt && echo \"\"' --data-binary @/etc/passwd",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "buffer_overflow",
+      "test_value": "%0a%2f%62%79%5f%73%65%6c%66%79%2e%6d%64%2f%73%65%6c%61%72%79%20%3c%2a%3e%20%74%68%65%2075%6e%69%63%6b%65%72%73%2075%72%6e%61%6e%64",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "sql",
+      "test_value": "' OR '1'='1'",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "xss",
+      "test_value": "<script>alert('XSS');</script>",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "path_traversal",
+      "test_value": "/..;/etc/passwd",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "os_command_injection",
+      "test_value": "; ls -al;",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "csrf",
+      "test_value": "<form action='http://example.com/login' method='POST'><input type='hidden' name='_token' value='your_token_here'><button type='submit'>Submit</button></form>",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "injection",
+      "test_value": "' UNION SELECT * FROM users -- ",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "file_upload",
+      "test_value": ";/bin/bash -c 'echo \"Content-Disposition: form-data; name=uploaded_file\" > file.txt && echo \"\"' --data-binary @/etc/passwd",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "buffer_overflow",
+      "test_value": "%0a%2f%62%79%5f%73%65%6c%66%79%2e%6d%64%2f%73%65%6c%61%72%79%20%3c%2a%3e%20%74%68%65%2075%6e%69%63%6b%65%72%73%2075%72%6e%61%6e%64",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    }
+  ],
+  "endpoint_results": {
+    "/triage-api/auth/login": {
+      "method": "POST",
+      "total_tests": 8,
+      "vulnerabilities": 8
+    },
+    "/triage-api/auth/who-i-am": {
+      "method": "POST",
+      "total_tests": 8,
+      "vulnerabilities": 8
+    },
+    "/triage-api/emergency-situations": {
+      "method": "POST",
+      "total_tests": 8,
+      "vulnerabilities": 8
+    },
+    "/triage-api/emergency-situations/page": {
+      "method": "GET",
+      "total_tests": 8,
+      "vulnerabilities": 8
+    },
+    "/triage-api/emergency-situations/opened": {
+      "method": "GET",
+      "total_tests": 8,
+      "vulnerabilities": 8
+    },
+    "/triage-api/emergency-situations/{emergencySituationId}/incidents": {
+      "method": "POST",
+      "total_tests": 8,
+      "vulnerabilities": 0
+    },
+    "/triage-api/emergency-situations/{emergencySituationId}/emergency-requests": {
+      "method": "POST",
+      "total_tests": 8,
+      "vulnerabilities": 0
+    },
+    "/triage-api/emergency-situations/victims": {
+      "method": "POST",
+      "total_tests": 8,
+      "vulnerabilities": 8
+    },
+    "/triage-api/handbooks/descriptors": {
+      "method": "GET",
+      "total_tests": 8,
+      "vulnerabilities": 8
+    },
+    "/triage-api/handbooks": {
+      "method": "GET",
+      "total_tests": 8,
+      "vulnerabilities": 8
+    }
+  }
+}
