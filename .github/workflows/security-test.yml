@@ -1,0 +1,51 @@
+name: AI Security Test
+
+on: [push, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Ollama
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama serve &
+          sleep 10
+          ollama pull qwen2.5-coder:3b
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      
+      - name: Install dependencies
+        run: pip install requests
+      
+      - name: Run AI bombardment
+        run: python bombardier.py
+        continue-on-error: true
+      
+      - name: Upload reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-reports
+          path: security_report_*
+      
+      - name: Show results
+        run: |
+          echo "## 🚀 Результаты тестирования" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Находим последний отчет
+          REPORT=$(ls -t security_report_*.txt 2>/dev/null | head -1)
+          
+          if [ -n "$REPORT" ]; then
+            echo "### 📊 Статистика" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY'
+            head -20 "$REPORT" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Отчет не найден" >> $GITHUB_STEP_SUMMARY
+          fi
