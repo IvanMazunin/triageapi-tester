@@ -141,11 +141,10 @@ ENDPOINTS = [
     }
 ]
 
-
 # ===== ФУНКЦИИ =====
 
 def ask_ai(prompt: str, timeout: int = 60) -> str:
-    """Отправить запрос к нейросети deepseek-coder"""
+    """Отправить запрос к нейросети"""
     payload = {
         "model": MODEL_NAME,
         "prompt": prompt,
@@ -157,7 +156,7 @@ def ask_ai(prompt: str, timeout: int = 60) -> str:
     }
     
     try:
-        print(f"    Запрос к нейросети (таймаут {timeout}с)...", end=" ", flush=True)
+        print(f"    Запрос к нейросети", end=" ", flush=True)
         response = requests.post(OLLAMA_URL, json=payload, timeout=timeout)
         print("OK")
         response.raise_for_status()
@@ -187,9 +186,7 @@ Response:"""
     # Парсинг JSON
     if response:
         try:
-            # Очищаем ответ от markdown и лишних символов
             clean_response = response.strip()
-            # Убираем возможные маркеры кода
             if clean_response.startswith('```json'):
                 clean_response = clean_response[7:]
             if clean_response.startswith('```'):
@@ -200,7 +197,6 @@ Response:"""
             
             #print(clean_response)
             
-            # Находим JSON массив
             start = clean_response.find('[')
             end = clean_response.rfind(']') + 1
             if start != -1 and end > start:
@@ -209,8 +205,24 @@ Response:"""
                 if attacks and isinstance(attacks, list):
                     print(f"    Успешно подготовлено {len(attacks)} атак")
                     return attacks
-        except json.JSONDecodeError as e:
-            print(f"    Ошибка парсинга JSON: {e}")
+        except:
+            pass
+    return [
+        {"type": "sql_injection", "value": "' OR '1'='1"},
+        {"type": "sql_injection", "value": "'; DROP TABLE Users; --"},
+        {"type": "xss", "value": "<script>alert('XSS')</script>"},
+        {"type": "buffer_overflow", "value": "A" * 5000},
+        {"type": "invalid_uuid", "value": "not-a-uuid"},
+        {"type": "invalid_uuid", "value": "123"},
+        {"type": "negative_number", "value": -1},
+        {"type": "large_number", "value": 9999999999},
+        {"type": "empty_string", "value": ""},
+        {"type": "null_byte", "value": "\u0000"},
+        {"type": "path_traversal", "value": "../../../etc/passwd"},
+        {"type": "unicode_exploit", "value": "\u0000\u001f\u007f"},
+        {"type": "json_injection", "value": '{"__proto__": {"test": true}}'},
+        {"type": "nosql_injection", "value": '{"$ne": null}'},
+    ]
 
 def get_jwt_token() -> Optional[str]:
     """Получить JWT токен через логин"""
@@ -252,7 +264,6 @@ def make_request(endpoint: Dict, test_value: Any) -> Dict:
     
     try:
         if endpoint['method'] == 'GET':
-            # Для GET запросов
             if endpoint.get('params'):
                 params = {p: str(test_value) for p in endpoint['params']}
                 resp = requests.get(url, params=params, headers=headers, timeout=10)
@@ -260,11 +271,9 @@ def make_request(endpoint: Dict, test_value: Any) -> Dict:
                 resp = requests.get(url, headers=headers, timeout=10)
         
         elif endpoint['method'] == 'POST':
-            # Для POST запросов - пробуем разные форматы тела
             if isinstance(test_value, dict):
                 body = test_value
             elif isinstance(test_value, str) and test_value.startswith('{'):
-                # Пробуем парсить как JSON
                 try:
                     body = json.loads(test_value)
                 except:
@@ -309,7 +318,6 @@ def make_request(endpoint: Dict, test_value: Any) -> Dict:
         }
 
 def run_bombardment():
-    """Главная функция - запуск атаки"""
     global jwt_token
     
     print("=" * 70)
@@ -317,7 +325,6 @@ def run_bombardment():
     print(f"Модель: {MODEL_NAME}")
     print("=" * 70)
     
-    # Проверка Ollama
     print("\n Проверка инфраструктуры...")
     test_response = ask_ai("Respond: OK", timeout=30)
     if test_response:
@@ -325,12 +332,10 @@ def run_bombardment():
     else:
         print("    Нейросеть не ответила, но продолжаем с fallback атаками")
     
-    # Получение токена
     jwt_token = get_jwt_token()
     if not jwt_token:
-        print("\n JWT токен не получен. Некоторые эндпоинты будут выдавать 401.")
+        print("\n JWT токен не получен.")
     
-    # Получаем вредоносные значения от нейросети
     print("\n Генерация тестовых значений нейросетью...")
     malicious_values = get_malicious_values()
     print(f"    Сгенерировано {len(malicious_values)} тестовых значений")
@@ -345,10 +350,9 @@ def run_bombardment():
         "endpoint_results": {}
     }
     
-    # Бомбардировка
     for endpoint in ENDPOINTS:
         print(f"\n{'='*60}")
-        print(f" ТЕСТИРУЕМ: {endpoint['method']} {endpoint['path']}")
+        print(f" ТЕСТИРОВАНИЕ: {endpoint['method']} {endpoint['path']}")
         print(f"    {endpoint['description']}")
         
         endpoint_vulns = []
@@ -362,7 +366,7 @@ def run_bombardment():
             result = make_request(endpoint, test_value)
             
             if result['vulnerable']:
-                print(f"  УЯЗВИМОСТЬ! (HTTP {result['status']})")
+                print(f"  Угроза (HTTP {result['status']})")
                 endpoint_vulns.append({
                     "attack_type": attack_type,
                     "test_value": test_value,
@@ -378,7 +382,7 @@ def run_bombardment():
                     "response_preview": result['response_preview']
                 })
             else:
-                status_icon = "ОК" if result['status'] < 400 else "!!!"
+                status_icon = "ОК" if result['status'] < 400 else "ОК"
                 print(f" {status_icon} {result['status']} ({result['time_ms']}ms)")
         
         report["endpoint_results"][endpoint['path']] = {
@@ -388,16 +392,12 @@ def run_bombardment():
         }
         
         vuln_count = len(endpoint_vulns)
-        if vuln_count > 0:
-            print(f"   ИТОГ:  {vuln_count}/{len(malicious_values)} уязвимостей")
-        else:
-            print(f"   ИТОГ:  {vuln_count}/{len(malicious_values)} уязвимостей")
+        print(f"   ИТОГ:  {vuln_count}/{len(malicious_values)} проблем")
     
-    # Финальный отчет
     print("\n" + "=" * 70)
     print("ИТОГОВЫЙ ОТЧЕТ")
     print("=" * 70)
-    print(f"НАЙДЕНО УЯЗВИМОСТЕЙ: {len(report['vulnerabilities'])}")
+    print(f"НАЙДЕНО УГРОЗ: {len(report['vulnerabilities'])}")
     
     if report['vulnerabilities']:
         print("\n ДЕТАЛИЗАЦИЯ:")
@@ -407,7 +407,6 @@ def run_bombardment():
             print(f"      Payload: {vuln['test_value'][:80]}")
             print(f"      Ответ: {vuln['response_status']} - {vuln['response_preview'][:80]}")
     
-    # Сохраняем отчеты
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     
     report_filename = f"security_report_{timestamp}.json"
@@ -415,7 +414,6 @@ def run_bombardment():
         json.dump(report, f, indent=2, ensure_ascii=False)
     print(f"\n JSON отчет: {report_filename}")
     
-    # Краткий текстовый отчет
     summary_filename = f"security_report_{timestamp}.txt"
     with open(summary_filename, "w", encoding="utf-8") as f:
         f.write(f"Triage API Security Report\n")
