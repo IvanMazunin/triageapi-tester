@@ -17,16 +17,10 @@ OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL_NAME = "qwen2.5-coder:3b"
 
 #API
-TARGET_API = "http://localhost:5188"
-
-TEST_CREDENTIALS = {
-    "smpNumber": "12",
-    "login": "1262",
-    "password": "+12345"
-}
+TARGET_API = "http://46.146.213.95/:5188"
 
 # Глобальный токен
-jwt_token = None
+jwt_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyLTEyNjIiLCJuYmYiOjE3Nzc0NTI4MDEsImV4cCI6MTc3NzUzOTIwMSwiaXNzIjoiVHJpYWdlQXBpIn0.SffXX-yjGxS7jGRBl93Ox7Y9_WYHV3mPg_zCB4MAXkE"
 
 # ===== ЭНДПОИНТЫ ДЛЯ ТЕСТИРОВАНИЯ =====
 ENDPOINTS = [
