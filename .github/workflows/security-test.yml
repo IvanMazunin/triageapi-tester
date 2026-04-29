@@ -43,7 +43,7 @@ jobs:
           
           if [ -n "$REPORT" ]; then
             echo "### 📊 Статистика" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY'
+            echo '```' >> $GITHUB_STEP_SUMMARY
             head -20 "$REPORT" >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
           else
