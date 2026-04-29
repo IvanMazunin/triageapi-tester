@@ -17,7 +17,7 @@ OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL_NAME = "qwen2.5-coder:3b"
 
 #API
-TARGET_API = "http://46.146.213.95:5188"
+TARGET_API = "http://localhost:5188"
 
 TEST_CREDENTIALS = {
     "smpNumber": "12",
@@ -144,7 +144,7 @@ ENDPOINTS = [
 # ===== ФУНКЦИИ =====
 
 def ask_ai(prompt: str, timeout: int = 60) -> str:
-    """Отправить запрос к нейросети"""
+    """Отправить запрос к нейросети """
     payload = {
         "model": MODEL_NAME,
         "prompt": prompt,
