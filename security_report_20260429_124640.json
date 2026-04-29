@@ -1,0 +1,507 @@
+{
+  "timestamp": "2026-04-29T12:42:50.169661",
+  "target": "http://localhost:5188",
+  "model": "qwen2.5-coder:3b",
+  "jwt_obtained": true,
+  "total_tests": 0,
+  "vulnerabilities": [
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "sql_injection",
+      "test_value": "' OR '1'='1",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "sql_injection",
+      "test_value": "'; DROP TABLE Users; --",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "xss",
+      "test_value": "<script>alert('XSS')</script>",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "buffer_overflow",
+      "test_value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "invalid_uuid",
+      "test_value": "not-a-uuid",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "invalid_uuid",
+      "test_value": "123",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "negative_number",
+      "test_value": "-1",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "large_number",
+      "test_value": "9999999999",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "empty_string",
+      "test_value": "",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "null_byte",
+      "test_value": "\u0000",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "path_traversal",
+      "test_value": "../../../etc/passwd",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "unicode_exploit",
+      "test_value": "\u0000\u001f",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "json_injection",
+      "test_value": "{\"__proto__\": {\"test\": true}}",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/auth/who-i-am",
+      "method": "POST",
+      "attack_type": "nosql_injection",
+      "test_value": "{\"$ne\": null}",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"12-1262\",\"login\":\"1262\",\"smpNumber\":\"12\",\"fullName\":\"ПШОНЧЕНКО Ю В\",\"lastModified\":\"2026-04-27T08:05:27.646072Z\",\"changeDate\":null},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "sql_injection",
+      "test_value": "' OR '1'='1",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"feabf2a2-8ee7-4da4-bb4b-51d58205d766\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-29T07:43"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "sql_injection",
+      "test_value": "'; DROP TABLE Users; --",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"3092af7b-9106-4c46-ab32-84feac4df664\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-29T07:43"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "xss",
+      "test_value": "<script>alert('XSS')</script>",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"d6ea5cb8-56d3-4cf2-ae38-463c11349ef8\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-29T07:43"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "buffer_overflow",
+      "test_value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"22d870a0-9311-46f2-a11e-c3ac606857d5\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-29T07:43"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "invalid_uuid",
+      "test_value": "not-a-uuid",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"26fe79d7-30d1-4f82-bc07-72b28e42c3ae\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-29T07:43"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "invalid_uuid",
+      "test_value": "123",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"2a890505-71a3-4b32-8ce2-83fa177e4ce6\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-29T07:44"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "negative_number",
+      "test_value": "-1",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"608acc45-7f2b-4798-a1ab-9c19fbeed008\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-29T07:44"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "large_number",
+      "test_value": "9999999999",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"0fe81e6b-8761-4aaf-af19-84783375dbd4\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-29T07:44"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "empty_string",
+      "test_value": "",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"b7734c61-998d-4863-a5fd-fbff858b7d3f\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-29T07:44"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "null_byte",
+      "test_value": "\u0000",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"e21cf3f0-0f9c-4c5d-b9ec-825fe18d06a4\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-29T07:44"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "path_traversal",
+      "test_value": "../../../etc/passwd",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"975ab3a8-8f1c-4527-a6a7-13a5bbcea0e8\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-29T07:44"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "unicode_exploit",
+      "test_value": "\u0000\u001f",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"a114e1f1-4a48-4d0d-9dbc-dd0c78886621\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-29T07:44"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "json_injection",
+      "test_value": "{\"__proto__\": {\"test\": true}}",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"878d60d5-b3fc-4d6b-a3f9-26e182a09fbb\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-29T07:44"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations",
+      "method": "POST",
+      "attack_type": "nosql_injection",
+      "test_value": "{\"$ne\": null}",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"id\":\"ea37bb1b-dd21-41cc-9f23-47c430242b8e\",\"authorId\":\"12-1262\",\"clientCreationTime\":\"0001-01-01T00:00:00\",\"clientLastUpdateTime\":\"0001-01-01T00:00:00\",\"serverCreationTime\":\"2026-04-29T07:44"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/page",
+      "method": "GET",
+      "attack_type": "invalid_uuid",
+      "test_value": "123",
+      "response_status": 200,
+      "response_preview": "{\"data\":{\"items\":[],\"takeCount\":0,\"skippedCount\":123,\"totalCount\":87},\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/emergency-situations/page",
+      "method": "GET",
+      "attack_type": "negative_number",
+      "test_value": "-1",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"2201X: OFFSET \\u043D\\u0435 \\u043C\\u043E\\u0436\\u0435\\u0442 \\u0431\\u044B\\u0442\\u044C \\u043E\\u0442\\u0440\\u0438\\u0446\\u0430\\u0442\\u0435\\u043B\\u04"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "sql_injection",
+      "test_value": "' OR '1'='1",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "sql_injection",
+      "test_value": "'; DROP TABLE Users; --",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "xss",
+      "test_value": "<script>alert('XSS')</script>",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "buffer_overflow",
+      "test_value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "invalid_uuid",
+      "test_value": "not-a-uuid",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "invalid_uuid",
+      "test_value": "123",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "negative_number",
+      "test_value": "-1",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "large_number",
+      "test_value": "9999999999",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "empty_string",
+      "test_value": "",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "null_byte",
+      "test_value": "\u0000",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "path_traversal",
+      "test_value": "../../../etc/passwd",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "unicode_exploit",
+      "test_value": "\u0000\u001f",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "json_injection",
+      "test_value": "{\"__proto__\": {\"test\": true}}",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks/descriptors",
+      "method": "GET",
+      "attack_type": "nosql_injection",
+      "test_value": "{\"$ne\": null}",
+      "response_status": 200,
+      "response_preview": "{\"data\":[{\"prefix\":\"base\",\"versions\":[\"1.0\"],\"description\":\"Базовый справочник\"}],\"isSuccess\":true,\"statusCode\":200,\"errors\":[]}"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "sql_injection",
+      "test_value": "' OR '1'='1",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "sql_injection",
+      "test_value": "'; DROP TABLE Users; --",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "xss",
+      "test_value": "<script>alert('XSS')</script>",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "buffer_overflow",
+      "test_value": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "invalid_uuid",
+      "test_value": "not-a-uuid",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "invalid_uuid",
+      "test_value": "123",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "negative_number",
+      "test_value": "-1",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "large_number",
+      "test_value": "9999999999",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "null_byte",
+      "test_value": "\u0000",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "path_traversal",
+      "test_value": "../../../etc/passwd",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "unicode_exploit",
+      "test_value": "\u0000\u001f",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "json_injection",
+      "test_value": "{\"__proto__\": {\"test\": true}}",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    },
+    {
+      "endpoint": "/triage-api/handbooks",
+      "method": "GET",
+      "attack_type": "nosql_injection",
+      "test_value": "{\"$ne\": null}",
+      "response_status": 500,
+      "response_preview": "{\"Data\":null,\"IsSuccess\":false,\"StatusCode\":500,\"Errors\":[\"\\u041D\\u0435\\u0432\\u043E\\u0437\\u043C\\u043E\\u0436\\u043D\\u043E \\u043D\\u0430\\u0439\\u0442\\u0438 \\u0441\\u043F\\u0440\\u0430\\u0432\\u043E\\u0447\\u043D\\"
+    }
+  ],
+  "endpoint_results": {
+    "/triage-api/auth/login": {
+      "method": "POST",
+      "total_tests": 14,
+      "vulnerabilities": 0
+    },
+    "/triage-api/auth/who-i-am": {
+      "method": "POST",
+      "total_tests": 14,
+      "vulnerabilities": 14
+    },
+    "/triage-api/emergency-situations": {
+      "method": "POST",
+      "total_tests": 14,
+      "vulnerabilities": 14
+    },
+    "/triage-api/emergency-situations/page": {
+      "method": "GET",
+      "total_tests": 14,
+      "vulnerabilities": 2
+    },
+    "/triage-api/emergency-situations/opened": {
+      "method": "GET",
+      "total_tests": 14,
+      "vulnerabilities": 0
+    },
+    "/triage-api/emergency-situations/victims": {
+      "method": "POST",
+      "total_tests": 14,
+      "vulnerabilities": 0
+    },
+    "/triage-api/handbooks/descriptors": {
+      "method": "GET",
+      "total_tests": 14,
+      "vulnerabilities": 14
+    },
+    "/triage-api/handbooks": {
+      "method": "GET",
+      "total_tests": 14,
+      "vulnerabilities": 13
+    }
+  }
+}
