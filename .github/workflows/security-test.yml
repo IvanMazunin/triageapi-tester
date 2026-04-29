@@ -35,17 +35,17 @@ jobs:
       
       - name: Show results
         run: |
-          echo "## 🚀 Результаты тестирования" >> $GITHUB_STEP_SUMMARY
+          echo "## Результаты тестирования" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           
           # Находим последний отчет
           REPORT=$(ls -t security_report_*.txt 2>/dev/null | head -1)
           
           if [ -n "$REPORT" ]; then
-            echo "### 📊 Статистика" >> $GITHUB_STEP_SUMMARY
+            echo "### Статистика" >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
             head -20 "$REPORT" >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
           else
-            echo "⚠️ Отчет не найден" >> $GITHUB_STEP_SUMMARY
+            echo "Отчет не найден" >> $GITHUB_STEP_SUMMARY
           fi
